@@ -4,7 +4,7 @@ from pyomo.opt import SolverFactory
 
 # capital costs for wind, solar, and energy storage systems
 
-wind_cap_cost 			= 1200000000       # $/GW
+wind_cap_cost 			= 9200000000       # $/GW
 solar_cap_cost 			= 800000000       # $/GW
 ESS_p_cap_cost 			= 200000000       # $/GW
 ESS_e_cap_cost 			= 150000000       # $/kWh
