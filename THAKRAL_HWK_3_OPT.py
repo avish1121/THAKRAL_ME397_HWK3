@@ -50,10 +50,6 @@ def match_const(model, i):
     return model.wind[i]*model.cap['w_cap'] + model.solar[i]*model.cap['s_cap'] + model.ESS_d[i] - model.ESS_c[i] - model.curt[i] - model.demand[i] == 0   
 model.match = Constraint(model.t, rule = match_const)
 
-def match_const(model, i):
-    return model.wind[i]*model.cap['w_cap'] + model.solar[i]*model.cap['s_cap'] + model.ESS_d[i] - model.ESS_c[i] - model.curt[i] - demand == 0   
-model.match = Constraint(model.t, rule = match_const)
-
 # ESS charge/discharge constraint
 def ESS_charge_disc_const(model, i):
     return model.ESS_c[i] + model.ESS_d[i] <= model.cap['ESS_power_cap']   
