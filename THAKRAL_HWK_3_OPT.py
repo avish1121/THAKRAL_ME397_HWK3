@@ -21,7 +21,6 @@ model = AbstractModel(name = 'solar-wind-storage model')
 # create model sets
 model.t                 = Set(initialize = [i for i in range(8760)], ordered=True)    
 model.tech              = Set(initialize =['w_cap','s_cap', 'ESS_power_cap', 'ESS_energy_cap'], ordered=True)  
-
 model.wind              = Param(model.t)
 model.solar             = Param(model.t)
 model.demand            = Param(model.t)
@@ -49,6 +48,10 @@ model.OBJ = Objective(rule=obj_expression)
 # supply/demand match constraint
 def match_const(model, i):
     return model.wind[i]*model.cap['w_cap'] + model.solar[i]*model.cap['s_cap'] + model.ESS_d[i] - model.ESS_c[i] - model.curt[i] - model.demand[i] == 0   
+model.match = Constraint(model.t, rule = match_const)
+
+def match_const(model, i):
+    return model.wind[i]*model.cap['w_cap'] + model.solar[i]*model.cap['s_cap'] + model.ESS_d[i] - model.ESS_c[i] - model.curt[i] - demand == 0   
 model.match = Constraint(model.t, rule = match_const)
 
 # ESS charge/discharge constraint
